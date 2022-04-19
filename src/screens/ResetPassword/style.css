@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto;
+}
+
+body {
+    height: 100%;
+}
+
+.navbar {
+    background-color: #0077BA;
+    width: 100%;
+    height: 80px;
+}
+
+.form-data-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 74vh;
+}
+
+.form-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-title {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.label-username {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+.label-username input {
+    width: 300px;
+    height: 35px;
+    border-radius: 6px;
+    padding: 0 10px 0 10px;
+    border: 1px solid #999;
+    outline: none;
+}
+
+.label-username label {
+    margin-left: 2px;
+    margin-bottom: 2px;
+}
+
+.label-password {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+.label-password input {
+    width: 300px;
+    height: 35px;
+    border-radius: 6px;
+    padding: 0 10px 0 10px;
+    border: 1px solid #999;
+    outline: none;
+}
+
+.label-password label {
+    margin-left: 2px;
+    margin-bottom: 2px;
+}
+
+button {
+    width: 100%;
+    height: 100%;
+}
+
+.button {
+    width: 180px;
+    height: 35px;
+    border: none;
+    background: #0077BA;
+    color: #fff;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.create-and-forgot {
+    text-align: center;
+    font-size: 12px;
+}
+
+.create-and-forgot a {
+    text-decoration: none;
+}
+
+/* Wave style */
+
+.custom-shape-divider-bottom-1649861467 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-bottom-1649861467 svg {
+    position: relative;
+    display: block;
+    width: calc(130% + 1.3px);
+    height: 130px;
+}
+
+.custom-shape-divider-bottom-1649861467 .shape-fill {
+    fill: #0077BA;
+}

@@ -1,28 +1,25 @@
 import React, { Component } from 'react';
 import './style.css'
 
-class Register extends Component {
+class ResetPassword extends Component {
 
     constructor(props) {
         super(props)
 
         this.state = {
-            name: '',
             email: '',
-            password: ''
         }
     }
 
+    // do a login system
     submitHandler = (e) => {
         e.preventDefault()
         
         const payload = {
-            name: this.state.name,
             email: this.state.email,
-            password: this.state.password
         }
 
-        fetch("http://localhost:8080/register", {
+        fetch("http://localhost:8080/resetpassword", {
             method: 'POST',
             headers: {
                 "Accept": "application/json",
@@ -44,35 +41,24 @@ class Register extends Component {
 
 
     render() {
-        const {name, email, password} = this.state
+        const {email} = this.state
         return(
         <>
             <section className="navbar"></section>
 
             <div className="form-data-container">
                 <form className="form-data" method="POST" onSubmit={this.submitHandler}>
-                    <h1 className="login-title">Crie sua conta</h1>
-
-                    <div className="label-username">
-                        <label>Nome de usuário</label>
-                        <input type="text" name="name" value={name} onChange={this.changeHandler}/>
-                    </div>
+                    <h1 className="login-title">Resete sua senha</h1>
 
                     <div className="label-username">
                         <label>Email</label>
                         <input type="text" name="email" value={email} onChange={this.changeHandler}/>
                     </div>
-                    
-                    <div className="label-password">
-                        <label>Senha</label>
-                        <input type="password" name="password" value={password} onChange={this.changeHandler}/>
-                    </div>
 
-                    <button className="button" type="submit">Criar</button>
+                    <button className="button" type="submit">Enviar</button>
 
                     <div className="create-and-forgot">
-                        <p><a href="/login">Já possui uma conta?</a></p>
-                        <a href="/resetpassword">Esqueceu a senha?</a>
+                        <p>Não tem conta? <a href="/register">Crie uma!</a></p>
                     </div>
                 </form>
             </div>
@@ -86,4 +72,4 @@ class Register extends Component {
     )}
 }
 
-export default Register; 
+export default ResetPassword; 

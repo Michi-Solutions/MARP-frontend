@@ -62,11 +62,11 @@ class Login extends Component {
                         <input type="password" name="password" value={password} onChange={this.changeHandler}/>
                     </div>
 
-                    <button className="button" type="submit">Login</button>
+                    <button className="button" type="submit">Entrar</button>
 
                     <div className="create-and-forgot">
-                        <p>Não tem conta? <a href="#">Crie uma!</a></p>
-                        <a href="#">Esqueceu a senha?</a>
+                        <p>Não tem conta? <a href="/register">Crie uma!</a></p>
+                        <a href="/resetpassword">Esqueceu a senha?</a>
                     </div>
                 </form>
             </div>
