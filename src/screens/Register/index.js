@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './style.css'
+import '../../css/Auth.css'
 
 class Register extends Component {
 
@@ -9,7 +9,8 @@ class Register extends Component {
         this.state = {
             name: '',
             email: '',
-            password: ''
+            password: '',
+            error: ''
         }
     }
 
@@ -55,17 +56,17 @@ class Register extends Component {
 
                     <div className="label-username">
                         <label>Nome de usuário</label>
-                        <input type="text" name="name" value={name} onChange={this.changeHandler}/>
+                        <input type="text" name="name" value={name} onChange={this.changeHandler} required/>
                     </div>
 
                     <div className="label-username">
                         <label>Email</label>
-                        <input type="text" name="email" value={email} onChange={this.changeHandler}/>
+                        <input type="text" name="email" value={email} onChange={this.changeHandler} required/>
                     </div>
                     
                     <div className="label-password">
                         <label>Senha</label>
-                        <input type="password" name="password" value={password} onChange={this.changeHandler}/>
+                        <input type="password" name="password" value={password} onChange={this.changeHandler} required/>
                     </div>
 
                     <button className="button" type="submit">Criar</button>

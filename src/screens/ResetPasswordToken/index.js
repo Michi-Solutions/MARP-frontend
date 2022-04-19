@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import '../../css/Auth.css'
 
-class Login extends Component {
+class ResetPasswordToken extends Component {
 
     constructor(props) {
         super(props)
 
         this.state = {
-            email: '',
             password: '',
+            confirmPassword: '',
             error: ''
         }
     }
@@ -18,24 +18,25 @@ class Login extends Component {
         e.preventDefault()
         
         const payload = {
-            email: this.state.email,
             password: this.state.password
         }
 
-        fetch("http://localhost:8080/login", {
-            method: 'POST',
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload)
-        })
-        .then(res => res.json())
-        .then((data) => {
-            if (data !== 200) {
-                this.setState({error: "Email ou senha incorretos"})
-            }
-        })
+        if (this.state.password !== this.state.confirmPassword) {
+            this.setState({error: 'Senhas não conferem'})
+        } else {
+            fetch("http://localhost:8080/resetpassword", {
+                method: 'POST',
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data)
+            })
+        }
     }
 
     changeHandler = (e) => {
@@ -46,32 +47,31 @@ class Login extends Component {
 
 
     render() {
-        const {email, password} = this.state
+        const {password, confirmPassword} = this.state
         return(
         <>
             <section className="navbar"></section>
 
             <div className="form-data-container">
                 <form className="form-data" method="POST" onSubmit={this.submitHandler}>
-                    <h1 className="login-title">Entre na sua conta</h1>
+                    <h1 className="login-title">Resete sua senha</h1>
 
                     <p className="error">{this.state.error}</p>
 
-                    <div className="label-username">
-                        <label>Email</label>
-                        <input type="text" name="email" value={email} onChange={this.changeHandler} required/>
-                    </div>
-                    
                     <div className="label-password">
                         <label>Senha</label>
-                        <input type="password" name="password" value={password} onChange={this.changeHandler} required/>
+                        <input type="password" name="password" value={password} onChange={this.changeHandler}/>
                     </div>
 
-                    <button className="button" type="submit">Entrar</button>
+                    <div className="label-password">
+                        <label>Confirme a senha</label>
+                        <input type="password" name="confirmPassword" value={confirmPassword} onChange={this.changeHandler}/>
+                    </div>
+
+                    <button className="button" type="submit">Enviar</button>
 
                     <div className="create-and-forgot">
                         <p>Não tem conta? <a href="/register">Crie uma!</a></p>
-                        <a href="/resetpassword">Esqueceu a senha?</a>
                     </div>
                 </form>
             </div>
@@ -85,4 +85,4 @@ class Login extends Component {
     )}
 }
 
-export default Login; 
+export default ResetPasswordToken; 
