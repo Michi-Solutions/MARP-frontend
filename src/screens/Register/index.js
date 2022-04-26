@@ -8,6 +8,7 @@ class Register extends Component {
 
         this.state = {
             name: '',
+            surname: '',
             email: '',
             password: '',
             error: ''
@@ -18,9 +19,10 @@ class Register extends Component {
         e.preventDefault()
         
         const payload = {
-            name: this.state.name,
-            email: this.state.email,
-            password: this.state.password
+            nome: this.state.name,
+            sobrenome: this.state.surname,
+            mail: this.state.email,
+            senha: this.state.password
         }
 
         fetch("http://localhost:8080/register", {
@@ -45,7 +47,7 @@ class Register extends Component {
 
 
     render() {
-        const {name, email, password} = this.state
+        const {name, surname, email, password} = this.state
         return(
         <>
             <section className="navbar"></section>
@@ -55,8 +57,13 @@ class Register extends Component {
                     <h1 className="login-title">Crie sua conta</h1>
 
                     <div className="label-username">
-                        <label>Nome de usuário</label>
+                        <label>Nome</label>
                         <input type="text" name="name" value={name} onChange={this.changeHandler} required/>
+                    </div>
+
+                    <div className="label-username">
+                        <label>Sobrenome</label>
+                        <input type="text" name="surname" value={surname} onChange={this.changeHandler} required/>
                     </div>
 
                     <div className="label-username">
@@ -72,8 +79,7 @@ class Register extends Component {
                     <button className="button" type="submit">Criar</button>
 
                     <div className="create-and-forgot">
-                        <p><a href="/login">Já possui uma conta?</a></p>
-                        <a href="/resetpassword">Esqueceu a senha?</a>
+                        <p><a href="/user/login">Já possui uma conta?</a></p>
                     </div>
                 </form>
             </div>

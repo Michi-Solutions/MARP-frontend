@@ -18,14 +18,16 @@ class ResetPasswordToken extends Component {
         e.preventDefault()
         
         const payload = {
-            password: this.state.password
+            senha: this.state.password
         }
 
         if (this.state.password !== this.state.confirmPassword) {
             this.setState({error: 'Senhas não conferem'})
+            console.log(this.props)
         } else {
-            fetch("http://localhost:8080/resetpassword", {
-                method: 'POST',
+
+            fetch(`http://localhost:8080/user/resetpassword/${this.props.match.params.token}`, {
+                method: 'PUT',
                 headers: {
                     "Accept": "application/json",
                     "Content-Type": "application/json"
@@ -33,8 +35,8 @@ class ResetPasswordToken extends Component {
                 body: JSON.stringify(payload)
             })
             .then(res => res.json())
-            .then((data) => {
-                console.log(data)
+            .then((response) => {
+                console.log(response)
             })
         }
     }
@@ -48,6 +50,7 @@ class ResetPasswordToken extends Component {
 
     render() {
         const {password, confirmPassword} = this.state
+
         return(
         <>
             <section className="navbar"></section>
@@ -60,18 +63,18 @@ class ResetPasswordToken extends Component {
 
                     <div className="label-password">
                         <label>Senha</label>
-                        <input type="password" name="password" value={password} onChange={this.changeHandler}/>
+                        <input type="password" name="password" value={password} onChange={this.changeHandler} required/>
                     </div>
 
                     <div className="label-password">
                         <label>Confirme a senha</label>
-                        <input type="password" name="confirmPassword" value={confirmPassword} onChange={this.changeHandler}/>
+                        <input type="password" name="confirmPassword" value={confirmPassword} onChange={this.changeHandler} required/>
                     </div>
 
                     <button className="button" type="submit">Enviar</button>
 
                     <div className="create-and-forgot">
-                        <p>Não tem conta? <a href="/register">Crie uma!</a></p>
+                        <p>Não tem conta? <a href="/user/register">Crie uma!</a></p>
                     </div>
                 </form>
             </div>

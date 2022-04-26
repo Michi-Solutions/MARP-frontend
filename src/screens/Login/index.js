@@ -18,8 +18,8 @@ class Login extends Component {
         e.preventDefault()
         
         const payload = {
-            email: this.state.email,
-            password: this.state.password
+            mail: this.state.email,
+            senha: this.state.password
         }
 
         fetch("http://localhost:8080/login", {
@@ -31,9 +31,12 @@ class Login extends Component {
             body: JSON.stringify(payload)
         })
         .then(res => res.json())
-        .then((data) => {
-            if (data !== 200) {
-                this.setState({error: "Email ou senha incorretos"})
+        .then((response) => {
+            if (response.msg !== "Invalid Credentials" && response.msg !== "Invalid password") {
+                this.setState({error: ""})
+                console.log(response)
+            } else {
+                this.setState({error: "Usuario ou senha incorretos"})
             }
         })
     }
@@ -70,8 +73,8 @@ class Login extends Component {
                     <button className="button" type="submit">Entrar</button>
 
                     <div className="create-and-forgot">
-                        <p>Não tem conta? <a href="/register">Crie uma!</a></p>
-                        <a href="/resetpassword">Esqueceu a senha?</a>
+                        <p>Não tem conta? <a href="/user/register">Crie uma!</a></p>
+                        <a href="/user/resetpassword">Esqueceu a senha?</a>
                     </div>
                 </form>
             </div>

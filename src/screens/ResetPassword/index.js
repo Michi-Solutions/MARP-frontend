@@ -16,10 +16,10 @@ class ResetPassword extends Component {
         e.preventDefault()
         
         const payload = {
-            email: this.state.email,
+            mail: this.state.email,
         }
 
-        fetch("http://localhost:8080/resetpassword", {
+        fetch("http://localhost:8080/user/resetpassword", {
             method: 'POST',
             headers: {
                 "Accept": "application/json",
@@ -28,8 +28,8 @@ class ResetPassword extends Component {
             body: JSON.stringify(payload)
         })
         .then(res => res.json())
-        .then((data) => {
-            console.log(data)
+        .then((response) => {
+            console.log(response)
         })
     }
 
@@ -58,7 +58,7 @@ class ResetPassword extends Component {
                     <button className="button" type="submit">Enviar</button>
 
                     <div className="create-and-forgot">
-                        <p>Não tem conta? <a href="/register">Crie uma!</a></p>
+                        <p>Não tem conta? <a href="/user/register">Crie uma!</a></p>
                     </div>
                 </form>
             </div>
